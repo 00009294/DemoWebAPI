@@ -18,15 +18,21 @@ namespace DemoWebAPI.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult Get()
         {
             return Ok(this.productService.GetAllAsync());
         }
 
-        [HttpGet("{name}")]
-        public async Task<IActionResult> GetAll(string name)
+        [HttpGet]
+        public async Task<IActionResult> GetById([FromQuery]Guid id)
         {
-            return Ok(await this.productService.GetAllAsync(name));
+            return Ok(await this.productService.GetByIdAsync(id));
+        }
+
+        [HttpGet("{name}")]
+        public async Task<IActionResult> GetByName(string name)
+        {
+            return Ok(await this.productService.GetByNameAsync(name));
         }
 
         [HttpPost]

@@ -22,7 +22,7 @@ namespace DemoWebAPI.Services
             return this.productRepository.Delete(id);
         }
 
-        public async Task<List<Product>> GetAllAsync(string name)
+        public async Task<List<Product>> GetByNameAsync(string name)
         {
             return this.productRepository.GetAll(name);
         }
@@ -35,6 +35,11 @@ namespace DemoWebAPI.Services
         public async Task<Result> UpdateAsync(Guid id, Product product)
         {
             return this.productRepository.Update(id, product);
+        }
+
+        public async Task<Product> GetByIdAsync(Guid id)
+        {
+            return this.productRepository.GetById(id);
         }
     }
 }

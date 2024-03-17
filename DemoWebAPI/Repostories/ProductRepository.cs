@@ -73,20 +73,26 @@ namespace DemoWebAPI.Repostories
             return this.AppDbContext.Products.ToList();
         }
 
+        public Product GetById(Guid id)
+        {
+            if (id != Guid.Empty)
+            {
+                return this.AppDbContext.Products.First(p => p.Id == id);
+            }
+
+            return new Product();
+        }
+
         public Result Update(Guid id, Product product)
         {
             var oldproduct = this.AppDbContext.Products.First(p => p.Id == id);
 
             if (oldproduct != null)
             {
-                Product newProduct = new Product()
-                {
-                    Id = product.Id,
-                    Name = product.Name,
-                    Description = product.Description,
-                };
+                oldproduct.Name = product.Name;
+                oldproduct.Description = product.Description;
 
-                this.AppDbContext.Products.Update(newProduct);
+                this.AppDbContext.Products.Update(oldproduct);
                 this.AppDbContext.SaveChanges();
 
                 return new Result

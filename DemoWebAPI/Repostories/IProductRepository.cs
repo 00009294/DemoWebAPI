@@ -6,6 +6,7 @@ namespace DemoWebAPI.Repostories
     {
         List<Product> GetAll(string name);
         List<Product> GetAll();
+        Product GetById(Guid id);
         Result Create(Product product);
         Result Update(Guid id, Product product);
         Result Delete(Guid id);
