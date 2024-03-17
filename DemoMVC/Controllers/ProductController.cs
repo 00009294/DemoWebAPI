@@ -24,7 +24,7 @@ namespace DemoMVC.Controllers
             List<ProductViewModel> productList = new List<ProductViewModel>();
             HttpResponseMessage httpResponseMessage = 
                 _httpClient.GetAsync(_httpClient.BaseAddress + "/product/Get").Result;
-
+            
             if (httpResponseMessage.IsSuccessStatusCode)
             {
                 string data = httpResponseMessage.Content.ReadAsStringAsync().Result;
@@ -36,7 +36,26 @@ namespace DemoMVC.Controllers
 
             return View(productList);
         }
-        // GET: ProductController/Details/5
+
+        [HttpGet]
+        public ActionResult GetByName(string name)
+        {
+            List<ProductViewModel> productList = new List<ProductViewModel>();
+            HttpResponseMessage httpResponseMessage =
+                _httpClient.GetAsync(_httpClient.BaseAddress + "/product/GetByName/" + name).Result;
+
+            if (httpResponseMessage.IsSuccessStatusCode)
+            {
+                string data = httpResponseMessage.Content.ReadAsStringAsync().Result;
+                SwaggerResponse<ProductViewModel> swaggerResponse =
+                    JsonConvert.DeserializeObject<SwaggerResponse<ProductViewModel>>(data);
+
+                productList = swaggerResponse.Result;
+            }
+
+            return View(productList);
+        }        
+        
         [HttpGet]
         public ActionResult Details(Guid id)
         {

@@ -4,7 +4,7 @@ namespace DemoWebAPI.Repostories
 {
     public interface IProductRepository
     {
-        List<Product> GetAll(string name);
+        List<Product> GetByName(string name);
         List<Product> GetAll();
         Product GetById(Guid id);
         Result Create(Product product);

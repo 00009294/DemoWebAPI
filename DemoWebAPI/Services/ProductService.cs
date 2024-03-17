@@ -24,7 +24,7 @@ namespace DemoWebAPI.Services
 
         public async Task<List<Product>> GetByNameAsync(string name)
         {
-            return this.productRepository.GetAll(name);
+            return this.productRepository.GetByName(name);
         }
 
         public async Task<List<Product>> GetAllAsync()

@@ -56,14 +56,14 @@ namespace DemoWebAPI.Repostories
             };
         }
 
-        public List<Product> GetAll(string name)
+        public List<Product> GetByName(string name)
         {
             if (name == null)
             {
                 return new List<Product>();
             }
 
-            List<Product> products = this.AppDbContext.Products.Where(p => p.Name == name).ToList();
+            List<Product> products = this.AppDbContext.Products.Where(p => p.Name.StartsWith(name)).ToList();
 
             return products;
         }
