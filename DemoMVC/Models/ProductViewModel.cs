@@ -12,8 +12,7 @@ namespace DemoMVC.Models
         [JsonProperty("name")]
         [DisplayName("Product Name")]
         public string Name { get; set; } = string.Empty;
-        [Required]
         [JsonProperty("description")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
     }
 }
