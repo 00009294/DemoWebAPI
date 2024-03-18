@@ -30,7 +30,7 @@ namespace DemoWebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetByName([FromQuery]string name)
+        public async Task<IActionResult> GetByName(string name)
         {
             return Ok(await this.productService.GetByNameAsync(name));
         }

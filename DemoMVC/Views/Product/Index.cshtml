@@ -7,21 +7,19 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <div class="form-group mt-2">
+        <a asp-action="Create" input type="submit" value="Create" class="btn btn-success"> Add Product </a>
+    </div>
 </p>
-
-<div class="row">
-    <div class="col-md-6">
-        <form class="d-flex" asp-action="GetByName" asp-controller="Product">
-            <input name="name" class="form-control me-1" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-success" type="submit">Search by name</button>
-        </form>
+@using (Html.BeginForm("GetByName", "Product", FormMethod.Get))
+{
+    @Html.TextBox("name")
+    <br />
+    <div class="form-group mt-2">
+        <input type="submit" value="Search" class="btn btn-success" /> 
     </div>
-    <div class="col-md-6">
-        <a asp-action="Index" class="text-dark">Back to List</a>
-    </div>
-</div>
-
+}
+    
 <table class="table">
     <thead>
         <tr>
